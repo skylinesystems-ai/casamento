@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#741331">
+  <title>Nosso Futuro | Planejamento Financeiro</title>
+  <style>
+    :root{--ivory:#f8f2e9;--paper:#fffdfa;--wine:#741331;--deep:#4a1024;--gold:#bd8532;--rose:#c97f7c;--ink:#251b19;--muted:#826f68;--line:#eadfd2}
+    *{box-sizing:border-box}html{background:var(--ivory)}body{margin:0;min-height:100vh;background:radial-gradient(circle at 18% 8%,#fffdf8 0,transparent 34%),linear-gradient(135deg,#fbf6ef,#f7efe5);color:var(--ink);font:15px Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+    .topbar{height:86px;padding:0 clamp(20px,4vw,68px);display:flex;align-items:center;gap:28px;border-bottom:1px solid #75403016;background:#fffdf9d9;backdrop-filter:blur(15px);position:sticky;top:0;z-index:20}
+    .brand{border:0;background:none;color:var(--deep);font:40px Georgia,serif;display:flex;align-items:center;gap:10px;white-space:nowrap}.brand i{color:var(--gold);font-style:normal;font-size:31px}.sync{display:inline-flex;align-items:center;gap:6px;color:#7a6a63;font-size:11px;white-space:nowrap}.sync:before{content:"";width:7px;height:7px;border-radius:50%;background:#d39c47}.sync.online:before{background:#4d9a65}.sync.error:before{background:#bf5353}
+    nav{margin-left:auto;display:flex;align-self:stretch;gap:15px}nav button{border:0;background:none;color:#6f534a;padding:0 14px;display:flex;align-items:center;gap:8px;position:relative}nav button b{font-size:20px;font-weight:400}nav button.active{color:var(--wine);font-weight:bold}nav button.active:after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:3px;background:var(--wine);border-radius:5px 5px 0 0}.gear{border:1px solid var(--line);background:var(--paper);border-radius:50%;width:42px;height:42px}
+    .shell{max-width:1450px;margin:auto;padding:50px clamp(20px,4vw,68px) 80px}.hero{min-height:220px;position:relative;overflow:hidden}.eyebrow{margin:0 0 10px;color:var(--gold);font-size:12px;letter-spacing:.2em;font-weight:bold}h1,h2{font-family:Georgia,serif;color:var(--deep);font-weight:500}h1{font-size:clamp(48px,5.2vw,78px);line-height:.98;letter-spacing:-.045em;margin:0;max-width:880px}.leaf{position:absolute;right:1%;top:-35px;width:320px;height:220px;border:1px solid #bd853277;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;color:#c7903c;font:180px Georgia;transform:rotate(-10deg);opacity:.55}.leaf span{position:absolute;right:-15px;top:30px;transform:rotate(-18deg)}
+    .summary{display:grid;grid-template-columns:115px minmax(280px,1.3fr) minmax(175px,.65fr) minmax(185px,.7fr) auto;align-items:center;gap:25px;margin:5px 0 38px}.rings{width:110px;height:110px;border:1.5px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font:40px Georgia}.total strong{display:block;color:var(--wine);font-size:clamp(42px,4.5vw,66px);line-height:1}.total>span{display:block;color:#866d63;margin:10px 0 16px;font-size:21px}.progress{height:13px;border-radius:99px;background:#eee6dc;overflow:hidden}.progress i{display:block;height:100%;min-width:3px;border-radius:inherit;background:linear-gradient(90deg,var(--wine),#9d1a45);transition:width .5s}.stat{min-height:70px;display:flex;align-items:center;gap:13px;border-left:1px solid #ded0c2;padding-left:23px}.stat em{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:#f3e9dd;color:var(--gold);font-style:normal;font-size:22px}.stat small,.stat strong{display:block}.stat small{color:#8c6a60;margin-bottom:6px}.stat strong{font-size:20px;text-transform:capitalize;white-space:nowrap}
+    .primary{border:0;background:linear-gradient(135deg,var(--wine),#8d1138);color:white;padding:18px 26px;border-radius:99px;font-weight:bold;box-shadow:0 12px 25px #7413312e;display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;transition:.2s}.primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px #74133140}.top-actions{display:grid;gap:9px}.secondary{border:1px solid #d8bfae;background:#fffdf9;color:var(--wine);padding:11px 20px;border-radius:99px;font-weight:bold;white-space:nowrap}.secondary:hover{background:#f5eae1}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:23px}.card{position:relative;background:#fffdfae8;border:1px solid var(--line);border-radius:23px;padding:29px;box-shadow:0 10px 28px #4e2a190e;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 15px 34px #4e2a1917}.dots{position:absolute;right:18px;top:12px;border:0;background:none;font-size:25px;color:#9a7f75}.cardhead{display:flex;gap:21px;align-items:center;margin-bottom:24px}.icon{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;background:#f6ece4;color:var(--gold);font:45px Georgia}.card h2{font-size:27px;margin:0 0 7px}.cardhead strong{font-size:35px;white-space:nowrap}.card.rose .progress i{background:linear-gradient(90deg,#c66d70,#d4978e)}.card.gold .progress i{background:linear-gradient(90deg,#b77e29,#d39c47)}.foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px}.foot b{color:var(--wine);font-size:22px}.rose .foot b{color:#bf686a}.gold .foot b{color:#b77e29}.foot span{color:#806b63;font-size:13px}.actions{border-top:1px solid var(--line);margin-top:19px;padding-top:16px;display:flex;align-items:center;justify-content:space-between}.actions small{color:#8a766e}.actions button,.line button{border:1px solid #dcc6ba;background:white;color:var(--wine);border-radius:99px;padding:8px 14px;font-weight:bold}
+    .insight{margin-top:22px;border:1px solid var(--line);background:#ffffff94;border-radius:18px;padding:17px 23px;display:flex;justify-content:space-between;align-items:center}.insight>div:first-child{display:flex;gap:12px;align-items:center}.insight p{margin:0;color:#746159}.insight p strong{display:block;color:var(--deep);margin-bottom:3px}.insight>div:last-child{text-align:right}.insight small{display:block;color:#88736b}.insight>div:last-child strong{font-size:23px;color:var(--wine)}
+    .panel{max-width:1000px;margin:8px auto;background:#fffdfae8;border:1px solid var(--line);border-radius:25px;padding:35px;box-shadow:0 15px 35px #4e2a190f}.paneltitle{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.panel h2{margin:0;font-size:38px}.line{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:19px;padding:19px 0;border-top:1px solid var(--line)}.line .mini{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:#f6ece4;color:var(--wine);font-size:22px}.line div strong,.line div small{display:block}.line small{color:#8a746b;margin-top:4px}.line>b small{font-weight:normal}.monthly{font-size:29px;color:var(--wine)}.monthly small{font-size:13px;color:#8b746c}.center{text-align:center;max-width:620px;padding:58px}.center>p:not(.eyebrow){line-height:1.7;color:#78665f}.bigplus{width:70px;height:70px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;color:var(--gold);font-size:34px}.hidden{display:none!important}
+    .backdrop{position:fixed;inset:0;background:#2c141875;backdrop-filter:blur(5px);z-index:50;display:grid;place-items:center;padding:20px}.modal{width:min(500px,100%);background:var(--paper);border:1px solid #eadaca;border-radius:25px;padding:37px;box-shadow:0 24px 80px #2a10164d;position:relative}.close{position:absolute;right:18px;top:13px;border:0;background:none;color:#7b655e;font-size:29px}.modal h2{font-size:38px;margin:0 0 23px}.modal label{display:block;color:#664b43;font-weight:bold;margin:15px 0 7px}.modal input,.modal select{display:block;width:100%;margin-top:8px;border:1px solid #ddcdbf;background:#fdfaf6;border-radius:13px;padding:14px 16px;color:var(--ink);outline:none}.modal input:focus,.modal select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #bd853221}.hint{color:#806e67;font-size:14px;line-height:1.5;background:#f7f0e8;padding:13px 15px;border-radius:12px}.wide{width:100%;margin-top:12px;border-radius:14px}.toast{position:fixed;right:26px;bottom:26px;background:var(--deep);color:white;padding:15px 20px;border-radius:14px;box-shadow:0 14px 35px #2d0f183f;z-index:80}
+    @media(max-width:1100px){nav button{font-size:0}nav button b{font-size:22px}.summary{grid-template-columns:90px 1fr 1fr}.summary .stat:last-of-type{display:none}.summary .top-actions{grid-column:3;grid-row:1}.grid{grid-template-columns:1fr 1fr}.card:last-child{grid-column:1/-1}.leaf{opacity:.22}}
+    @media(max-width:720px){.topbar{height:70px;padding:0 17px}.brand{font-size:27px}.brand i,.sync{display:none}nav{position:fixed;left:0;right:0;bottom:0;top:auto;height:66px;background:#fffaf4;border-top:1px solid var(--line);justify-content:space-around;z-index:30}.gear{margin-left:auto}.shell{padding:33px 17px 95px}.hero{min-height:180px}.leaf{display:none}h1{font-size:44px}.summary{grid-template-columns:72px 1fr;gap:17px}.rings{width:70px;height:70px;font-size:27px}.total strong{font-size:37px}.total>span{font-size:17px}.stat{border:0;padding:0}.summary .top-actions{grid-column:1/-1;grid-row:auto;width:100%}.summary .primary,.summary .secondary{width:100%}.grid{grid-template-columns:1fr}.card:last-child{grid-column:auto}.card{padding:23px}.icon{width:68px;height:68px;font-size:34px}.cardhead strong{font-size:30px}.insight{align-items:flex-start;gap:13px}.panel{padding:24px 19px}.line{grid-template-columns:auto 1fr}.line>b,.line>button{grid-column:2}.paneltitle{align-items:flex-start;gap:10px}.monthly{font-size:22px}.modal{padding:33px 23px}.toast{left:17px;right:17px;bottom:83px;text-align:center}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" onclick="showTab('overview')"><i>♧</i>Nosso Futuro</button><span id="syncStatus" class="sync">Conectando…</span>
+    <nav>
+      <button data-tab="overview" class="active" onclick="showTab('overview')"><b>⌂</b>Visão geral</button>
+      <button data-tab="goals" onclick="showTab('goals')"><b>◔</b>Metas</button>
+      <button data-tab="deposits" onclick="showTab('deposits')"><b>▣</b>Aportes</button>
+      <button data-tab="planning" onclick="showTab('planning')"><b>▥</b>Planejamento</button>
+    </nav>
+    <button class="gear" onclick="openEdit('casamento')" title="Configurar metas">⚙</button>
+  </header>
+  <main class="shell">
+    <section class="hero"><p class="eyebrow">PLANO DO CASAL</p><h1>Planejando hoje,<br>celebrando para sempre</h1><div class="leaf"><span>❧</span></div></section>
+    <section class="summary">
+      <div class="rings">◇○○</div>
+      <div class="total"><strong id="totalSaved"></strong><span id="totalTarget"></span><div class="progress"><i id="totalBar"></i></div></div>
+      <div class="stat"><em>▦</em><div><small>Meta mensal</small><strong id="monthlyGoal"></strong></div></div>
+      <div class="stat"><em>▦</em><div><small>Próximo prazo</small><strong id="nextDeadline"></strong></div></div>
+      <div class="top-actions"><button class="primary" onclick="openDeposit('casamento')">＋ Registrar aporte</button><button class="secondary" onclick="openEdit('casamento')">✎ Editar valores</button></div>
+    </section>
+    <div id="overview" class="tab"></div>
+    <div id="goals" class="tab hidden"></div>
+    <div id="deposits" class="tab hidden"></div>
+    <div id="planning" class="tab hidden"></div>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+  <div id="backdrop" class="backdrop hidden" onclick="closeModal(event)">
+    <section class="modal" onclick="event.stopPropagation()">
+      <button class="close" onclick="hideModal()">×</button>
+      <form id="depositForm" class="hidden" onsubmit="saveDeposit(event)">
+        <p class="eyebrow">UM PASSO MAIS PERTO</p><h2>Registrar aporte</h2>
+        <label>Destino<select id="depositGoal" onchange="updateHint()"></select></label>
+        <label>Valor do aporte (R$)<input id="depositAmount" type="number" min="1" step="0.01" placeholder="500,00" oninput="updateHint()" required></label>
+        <p id="depositHint" class="hint"></p><button class="primary wide">Confirmar aporte</button>
+      </form>
+      <form id="editForm" class="hidden" onsubmit="saveGoal(event)">
+        <p class="eyebrow">AJUSTAR PLANO</p><h2>Editar uma meta</h2>
+        <label>Meta<select id="editGoal" onchange="loadGoalForm()"></select></label>
+        <label>Valor desejado (R$)<input id="editTarget" type="number" min="1" required></label>
+        <label>Valor já guardado (R$)<input id="editSaved" type="number" min="0" step="0.01" required></label>
+        <label>Data limite<input id="editDeadline" type="date" required></label>
+        <button class="primary wide">Salvar alterações</button>
+      </form>
+    </section>
+  </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBuCWEqHNXOetDkyrjg22TrkBQfgA9liwg",
+      authDomain: "casamento-8d134.firebaseapp.com",
+      databaseURL: "https://casamento-8d134-default-rtdb.firebaseio.com",
+      projectId: "casamento-8d134",
+      storageBucket: "casamento-8d134.firebasestorage.app",
+      messagingSenderId: "466465762717",
+      appId: "1:466465762717:web:b205160b6093179c051374"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const goalsRef = ref(database, "planejamento/goals");
+    const syncStatus = document.getElementById("syncStatus");
+
+    window.firebaseSaveGoals = async updatedGoals => {
+      syncStatus.className = "sync";
+      syncStatus.textContent = "Salvando…";
+      try {
+        await set(goalsRef, updatedGoals);
+        syncStatus.className = "sync online";
+        syncStatus.textContent = "Salvo online";
+      } catch (error) {
+        syncStatus.className = "sync error";
+        syncStatus.textContent = "Erro ao salvar";
+        console.error("Firebase:", error);
+      }
+    };
+
+    onValue(goalsRef, snapshot => {
+      if (snapshot.exists()) {
+        window.applyFirebaseGoals(snapshot.val());
+      } else {
+        window.firebaseSaveGoals(window.getCurrentGoals());
+      }
+      syncStatus.className = "sync online";
+      syncStatus.textContent = "Sincronizado";
+    }, error => {
+      syncStatus.className = "sync error";
+      syncStatus.textContent = "Sem permissão";
+      console.error("Firebase:", error);
+    });
+  </script>
+  <script>
+    const initialGoals=[
+      {id:'casamento',name:'Casamento',icon:'◉',target:45000,saved:0,deadline:'2027-05-26',color:'wine'},
+      {id:'lua-de-mel',name:'Lua de mel',icon:'✈',target:18000,saved:0,deadline:'2027-06-01',color:'rose'},
+      {id:'apartamento',name:'Apartamento',icon:'⌂',target:80000,saved:0,deadline:'2027-12-31',color:'gold'}
+    ];
+    let goals;
+    try{goals=JSON.parse(localStorage.getItem('nosso-futuro-goals-html-v2'))||structuredClone(initialGoals)}catch{goals=structuredClone(initialGoals)}
+    const money=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
+    const fullMoney=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
+    function monthsUntil(date){const n=new Date(),e=new Date(date+'T12:00:00');return Math.max(1,(e.getFullYear()-n.getFullYear())*12+e.getMonth()-n.getMonth()+(e.getDate()>n.getDate()?1:0))}
+    function totals(){const target=goals.reduce((s,g)=>s+g.target,0),saved=goals.reduce((s,g)=>s+g.saved,0),monthly=goals.reduce((s,g)=>s+Math.max(0,g.target-g.saved)/monthsUntil(g.deadline),0);return{target,saved,monthly,progress:target?Math.min(100,saved/target*100):0}}
+    function persist(){localStorage.setItem('nosso-futuro-goals-html-v2',JSON.stringify(goals));if(window.firebaseSaveGoals)window.firebaseSaveGoals(goals)}
+    window.getCurrentGoals=()=>goals;
+    window.applyFirebaseGoals=onlineGoals=>{if(!Array.isArray(onlineGoals))return;goals=onlineGoals;localStorage.setItem('nosso-futuro-goals-html-v2',JSON.stringify(goals));render()};
+    function render(){
+      const t=totals(),next=[...goals].sort((a,b)=>a.deadline.localeCompare(b.deadline))[0];
+      document.getElementById('totalSaved').textContent=money(t.saved);document.getElementById('totalTarget').textContent='de '+money(t.target);document.getElementById('totalBar').style.width=t.progress+'%';document.getElementById('monthlyGoal').textContent=money(Math.ceil(t.monthly/10)*10);document.getElementById('nextDeadline').textContent=new Date(next.deadline+'T12:00:00').toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+      document.getElementById('overview').innerHTML='<section class="grid">'+goals.map(g=>{const p=Math.min(100,g.saved/g.target*100);return `<article class="card ${g.color}"><button class="dots" onclick="openEdit('${g.id}')" title="Editar">⋯</button><div class="cardhead"><span class="icon">${g.icon}</span><div><h2>${g.name}</h2><strong>${money(g.target)}</strong></div></div><div class="progress"><i style="width:${p}%"></i></div><div class="foot"><b>${Math.round(p)}%</b><span>${money(g.saved)} guardados</span></div><div class="actions"><small>Faltam ${money(Math.max(0,g.target-g.saved))}</small><button onclick="openDeposit('${g.id}')">Adicionar</button></div></article>`}).join('')+'</section><section class="insight"><div><span>✦</span><p><strong>Ritmo do plano</strong>Com o aporte mensal sugerido, todas as três metas chegam ao prazo.</p></div><div><small>Progresso total</small><strong>'+t.progress.toFixed(1).replace('.',',')+'%</strong></div></section>';
+      document.getElementById('goals').innerHTML='<section class="panel"><div class="paneltitle"><div><p class="eyebrow">SUAS PRIORIDADES</p><h2>Detalhamento das metas</h2></div></div>'+goals.map(g=>`<div class="line"><span class="mini">${g.icon}</span><div><strong>${g.name}</strong><small>Prazo: ${new Date(g.deadline+'T12:00:00').toLocaleDateString('pt-BR')}</small></div><b>${money(g.saved)} <small>de ${money(g.target)}</small></b><button onclick="openEdit('${g.id}')">Editar</button></div>`).join('')+'</section>';
+      document.getElementById('deposits').innerHTML='<section class="panel center"><span class="bigplus">＋</span><p class="eyebrow">NOVO PASSO</p><h2>Faça o plano avançar</h2><p>Registre quanto vocês conseguiram guardar e escolha para qual sonho o valor será destinado.</p><button class="primary" onclick="openDeposit(\'casamento\')">Registrar novo aporte</button></section>';
+      document.getElementById('planning').innerHTML='<section class="panel"><div class="paneltitle"><div><p class="eyebrow">APORTE RECOMENDADO</p><h2>Plano mensal por objetivo</h2></div><strong class="monthly">'+money(Math.ceil(t.monthly/10)*10)+'<small>/mês</small></strong></div>'+goals.map(g=>`<div class="line"><span class="mini">${g.icon}</span><div><strong>${g.name}</strong><small>${monthsUntil(g.deadline)} meses restantes</small></div><b>${money(Math.ceil(Math.max(0,g.target-g.saved)/monthsUntil(g.deadline)/10)*10)} <small>/mês</small></b></div>`).join('')+'</section>';
+      fillSelects();
+    }
+    function fillSelects(){['depositGoal','editGoal'].forEach(id=>{const el=document.getElementById(id),value=el.value;el.innerHTML=goals.map(g=>`<option value="${g.id}">${g.name}</option>`).join('');if(value&&goals.some(g=>g.id===value))el.value=value})}
+    function showTab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('hidden',x.id!==id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id))}
+    function showModal(form){document.getElementById('backdrop').classList.remove('hidden');document.getElementById('depositForm').classList.toggle('hidden',form!=='deposit');document.getElementById('editForm').classList.toggle('hidden',form!=='edit')}
+    function hideModal(){document.getElementById('backdrop').classList.add('hidden')}function closeModal(e){if(e.target.id==='backdrop')hideModal()}
+    function openDeposit(id){fillSelects();document.getElementById('depositGoal').value=id;document.getElementById('depositAmount').value='';updateHint();showModal('deposit');setTimeout(()=>document.getElementById('depositAmount').focus(),50)}
+    function updateHint(){const g=goals.find(x=>x.id===document.getElementById('depositGoal').value),v=Number(document.getElementById('depositAmount').value)||0;document.getElementById('depositHint').textContent=`Depois deste aporte, ${g.name.toLowerCase()} terá ${money(Math.min(g.target,g.saved+v))} guardados.`}
+    function saveDeposit(e){e.preventDefault();const id=document.getElementById('depositGoal').value,v=Number(document.getElementById('depositAmount').value);if(!v||v<=0)return;goals=goals.map(g=>g.id===id?{...g,saved:Math.min(g.target,g.saved+v)}:g);persist();render();hideModal();toast('✓ Aporte de '+fullMoney(v)+' registrado!')}
+    function openEdit(id){fillSelects();document.getElementById('editGoal').value=id;loadGoalForm();showModal('edit')}
+    function loadGoalForm(){const g=goals.find(x=>x.id===document.getElementById('editGoal').value);document.getElementById('editTarget').value=g.target;document.getElementById('editSaved').value=g.saved;document.getElementById('editDeadline').value=g.deadline}
+    function saveGoal(e){e.preventDefault();const id=document.getElementById('editGoal').value,target=Number(document.getElementById('editTarget').value),saved=Number(document.getElementById('editSaved').value),deadline=document.getElementById('editDeadline').value;goals=goals.map(g=>g.id===id?{...g,target,saved:Math.min(target,saved),deadline}:g);persist();render();hideModal();toast('✓ Meta atualizada!')}
+    function toast(text){const el=document.getElementById('toast');el.textContent=text;el.classList.remove('hidden');setTimeout(()=>el.classList.add('hidden'),3200)}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')hideModal()});render();
+  </script>
+</body>
+</html>
